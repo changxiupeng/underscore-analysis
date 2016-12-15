@@ -1,7 +1,6 @@
----
-title: underscore源码解析(1)--框架和基础条件的设置(Baseline setup)
----
-## 结构概括
+## underscore源码解析(1)--框架和基础条件的设置(Baseline setup)
+
+### 1. 结构概括
 underscore 的设计逻辑如下：
 1. 所有的业务逻辑都包裹在一个匿名的自执行的函数当中
 2. 定义了一个下划线变量`_`来标识自身，`_`是一个 **函数对象**，所有的 API 都挂载到该对象上
@@ -15,7 +14,7 @@ underscore 由七个部分组成：
 6. Utility Functions （工具）
 7. OOP （链式调用）
 
-## 源码
+### 2. 源码
 下面我们通过源码来解释一下上面的概括：
 
 ```JavaScript
@@ -119,7 +118,7 @@ underscore 由七个部分组成：
 }.call(this));
 ```
 
-### 局部变量的妙用
+#### 2.1 局部变量的妙用
 ```JavaScript
 var ArrayProto = Array.prototype, ObjProto = Object.prototype, FuncProto = Function.prototype;
 
@@ -139,7 +138,7 @@ underscore 本身也依赖了一些 js 的原生方法，underscore 会通过一
 - 在后续使用到这些地方或属性时，避免了冗长的代码书写
 - 减少了对象成员的访问深度，这样做可以带来一定的性能提升，比如 `Array.prototype.push` 可以直接保存到 `push`变量中
 
-### 下划线 `_` 构造函数
+#### 2.2 下划线 `_` 构造函数
 ```JavaScript
 var _ = function(obj) {
   if (obj instanceof _) return obj;

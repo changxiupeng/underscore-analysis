@@ -1,6 +1,6 @@
----
-title: underscore源码解析(2)--有关迭代的两个内部函数(Baseline setup)
----
+
+## underscore源码解析(2)--有关迭代的两个内部函数(Baseline setup)
+
 有两个重要的内部函数对 underscore 实现迭代方法十分重要，underscore 定义的所有有关迭代的方法基本都用到了这两个内部函数。我们通过 `_.each()` 和 `_.map()` 两个迭代方法来学习一下这两个内部函数。
 
 ### 1. 用 optimizeCb 优化迭代函数（回调函数）

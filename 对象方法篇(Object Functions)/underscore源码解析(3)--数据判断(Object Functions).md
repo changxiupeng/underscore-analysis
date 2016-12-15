@@ -1,12 +1,11 @@
----
-title: underscore源码解析(3)--数据判断(Object Functions)
----
+## underscore源码解析(3)--数据判断(Object Functions)
+
 
 前面两篇文章我们了解了 underscore 的大致框架，以及它为了后面更好地定义方法做的一些基础设置。从这篇文献开始，我将深入学习它的 API。 首先学习的是它的对象方法部分，这篇文章将主要解读这部分关于数据判断的方法。
 
-## 1\. 数据类型判断
+### 1\. 数据类型判断
 
-### 1.1 常规判断
+#### 1.1 常规判断
 
 先来看一下 underscore 的源码：
 
@@ -37,7 +36,7 @@ toString.call(new String); // [object String]
 
 总结： 对于 Arguments, Function, String, Number, Date, RegExp, Error 这些数据类型，underscore 都是通过 `Obect.prototype.toString` 方法来判断其类型的
 
-### 1.2 补充 \_.isArguments(obj)
+#### 1.2 补充 \_.isArguments(obj)
 
 上面虽然已经定义了该方法，但是由于 IE9 之前的版本在此处有 bug，对于 Arguments 类型，通过 toString 方法返回的是 "[object object]"， 而不是 "[object Arguments]"，所以还要进行修正
 
@@ -50,7 +49,7 @@ if (!_.isArguments(arguments)) {
 }
 ```
 
-### 1.3 补充 \_.isFunction(obj)
+#### 1.3 补充 \_.isFunction(obj)
 
 修正了早期 V8 存在的一些 bug
 
@@ -64,7 +63,7 @@ if (typeof /./ != 'function' && typeof Int8Array != 'object') {
 
 PS: 这也是 _编写可维护的JavaScript_ 一书中推荐的判断函数类型的方式（没有 if 条件句判断），直接用 typeof 操作符判断
 
-### 1.4 \_.isArray(obj)
+#### 1.4 \_.isArray(obj)
 判断 obj 是否是数组类型
 ```JavaScript
 // 优先使用 ES5中的 Array.isArray 方法来判断
@@ -80,7 +79,7 @@ function isFunction(obj) {
   return typeof obj.sort === "function" || false;
 }
 ```
-### 1.5 \_.isObject(obj)
+#### 1.5 \_.isObject(obj)
 判断 obj 是否是对象类型
 ```JavaScript
 _.isObject = function (obj) {
@@ -90,7 +89,7 @@ _.isObject = function (obj) {
 ```
 从代码中我们可以看出来，underscore 将函数也视为对象，但是像将 null 排除在外，即使 `typeof null = "object"`
 
-### 1.6 \_.isBoolean(obj)
+#### 1.6 \_.isBoolean(obj)
 判断 obj 是否是布尔类型
 ```JavaScript
 _.isBoolean = function (obj) {
@@ -98,7 +97,7 @@ _.isBoolean = function (obj) {
       toString(obj) === "[object Boolean]";
 };
 ```
-### 1.7 \_.isNull(obj)
+#### 1.7 \_.isNull(obj)
 判断 obj 是否是 null
 ```JavaScript
 _.isNull = function (obj) {
@@ -107,7 +106,7 @@ _.isNull = function (obj) {
   return obj === null;
 };
 ```
-### 1.8 \_.isUndefined(obj)
+#### 1.8 \_.isUndefined(obj)
 判断 obj 是否是 undefined
 ```JavaScript
 _.isUndefined = function (obj) {
@@ -134,7 +133,7 @@ jQuery 采用了另外一种方式，为整体的匿名函数定义两个形参�
   //...
 })(window)
 ```
-### 1.9 \_.isNaN(obj)
+#### 1.9 \_.isNaN(obj)
 判断 obj 是否是 NaN
 ```JavaScript
 _.isNaN = function (obj) {
@@ -151,8 +150,8 @@ _.isNaN("ddd"); // false
 _.isNaN(undefined); // false
 _.isNaN(NaN); // true
 ```
-## 2. 其他判断
-### 2.1 \_.isElement(obj)
+### 2. 其他判断
+#### 2.1 \_.isElement(obj)
 判断 obj 是否是一个 DOM 元素节点
 ```JavaScript
 _.isElement = function (obj) {
@@ -161,7 +160,7 @@ _.isElement = function (obj) {
 ```
 元素节点的 nodeType 值为 1
 之所以会加上两个非 “!” 运算符，是因为如果 obj 是 undefined，null, NaN, 0, 这几个可以转成 false 的值是，返回的是这几个值本身，而不是 false，所以要将它们强制转成 false
-### 2.2 \_.isFinite(obj)
+#### 2.2 \_.isFinite(obj)
 判断 obj 是不是有穷数字
 ```JavaScript
 _.isFinite = function (obj) {
@@ -170,7 +169,7 @@ _.isFinite = function (obj) {
 ```
 这里依赖了原生的 isFinite 方法，原生的方法在进行判断的时候会先将 obj 转成数字，然后再判断该数字是否有限，但是，true 和 null 会被转成1 和 0，就导致将 true 和 null 判断成有限，而它们根本就不是数字，`!isNaN(parseFloat(obj))` 可以将排除这种情况
 
-### 2.3 \_.isEmpty(obj)
+#### 2.3 \_.isEmpty(obj)
 判断 obj 是不是为空
 ```JavaScript
 _.isEmpty = function (obj) {
