@@ -9,5 +9,6 @@ JavaScript 的进阶之路少不了看一些第三方类库的源码，而源码
 ## 解读列表
 以下是我已经解读的部分，我将以每星期 2 ~ 3 篇的速度更新
 ### 基础设置篇（Baseline Setup）
-
+1.[框架和基础条件的设置](https://github.com/changxiupeng/underscore-analysis/issues/1)
+2.[]()
 ### 对象方法篇（Object Functions）
