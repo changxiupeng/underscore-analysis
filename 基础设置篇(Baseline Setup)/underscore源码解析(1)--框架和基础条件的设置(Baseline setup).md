@@ -1,3 +1,6 @@
+---
+title: underscore源码解析(1)--框架和基础条件的设置(Baseline setup)
+---
 ## 结构概括
 underscore 的设计逻辑如下：
 1. 所有的业务逻辑都包裹在一个匿名的自执行的函数当中

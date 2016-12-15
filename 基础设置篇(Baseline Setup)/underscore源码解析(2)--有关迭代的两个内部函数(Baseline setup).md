@@ -1,5 +1,7 @@
-有两个重要的内部函数对 underscore 实现迭代方法十分重要，underscore 定义的所有有
-关迭代的方法基本都用到了这两个内部函数。我们通过 underscore 中定义的迭代方法来学习一下这两个内部函数。
+---
+title: underscore源码解析(2)--有关迭代的两个内部函数(Baseline setup)
+---
+有两个重要的内部函数对 underscore 实现迭代方法十分重要，underscore 定义的所有有关迭代的方法基本都用到了这两个内部函数。我们通过 `_.each()` 和 `_.map()` 两个迭代方法来学习一下这两个内部函数。
 
 ### 1. 用 optimizeCb 优化迭代函数（回调函数）
 ```JavaScript
@@ -88,8 +90,7 @@ var optimizeCb = function(func, context, argCount) {
 };
 
 ```
-其中 switch 那部分并没有指定回调中参数的个数，而只是判断参数的个数，确保优化的时候
-不会弄乱参数的个数。
+其中 switch 那部分并没有指定回调中参数的个数，而只是判断参数的个数，确保优化的时候不会弄乱参数的个数。
 说白了，optimizeCb 函数唯一的作用就是在不扰乱回调参数个数的情况下为回调指定上下文。
 
 ### 2. 用 cb 判断类型并优化
@@ -147,7 +148,7 @@ var cb = function(value, context, argCount) {
 3. 如果 value 为对象，返回一个是否匹配属性的函数
 4. 如果 value 为字符串，那么返回一个可以获取 _对象_ 属性值的函数
 
-### 3. 依赖
+### 3. 涉及的依赖
 #### 3.1 `_.identity`
 ```JavaScript
 _.identity = function(value) {
@@ -203,4 +204,4 @@ _.isObject = function(obj) {
 ```
 
 #### 3.6 `matcher`
-matcher 函数将在下一篇文章中介绍，因为它依赖了其他几个 underscore 的关于对象的方法。
+matcher 函数将在之后的文章中介绍，因为它依赖了其他几个 underscore 中定义的关于对象的方法。
