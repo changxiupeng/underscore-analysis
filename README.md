@@ -19,4 +19,5 @@ JavaScript 的进阶之路少不了看一些第三方类库的源码，而源码
 - [是否值相等](https://github.com/changxiupeng/underscore-analysis/issues/5)
 - [属性操作](https://github.com/changxiupeng/underscore-analysis/issues/6)
 - [查找和筛选](https://github.com/changxiupeng/underscore-analysis/issues/7)
+- [扩展和克隆](https://github.com/changxiupeng/underscore-analysis/issues/8)
 
