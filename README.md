@@ -21,3 +21,5 @@ JavaScript 的进阶之路少不了看一些第三方类库的源码，而源码
 - [查找和筛选](https://github.com/changxiupeng/underscore-analysis/issues/7)
 - [扩展和克隆](https://github.com/changxiupeng/underscore-analysis/issues/8)
 
+### 集合方法篇（Collection Functions）
+- [迭代](https://github.com/changxiupeng/underscore-analysis/issues/9)
